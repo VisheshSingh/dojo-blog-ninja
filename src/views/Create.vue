@@ -1,5 +1,4 @@
 <template>
-  <h2>Create a blog post</h2>
   <form @submit.prevent="handleSubmit">
     <label for="title">Title</label>
     <input type="text" v-model="title" required />
@@ -14,6 +13,7 @@
 
 <script>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 export default {
   name: 'Create',
   setup() {
@@ -21,6 +21,8 @@ export default {
     const content = ref('');
     const tag = ref('');
     const tags = ref([]);
+
+    const router = useRouter();
 
     const handleKeydown = () => {
       if (!tags.value.includes(tag.value)) {
@@ -44,6 +46,8 @@ export default {
         },
         body: JSON.stringify(post),
       });
+
+      router.push({ name: 'Home' });
     };
 
     return { title, content, tag, tags, handleKeydown, handleSubmit };
