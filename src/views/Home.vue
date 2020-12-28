@@ -1,11 +1,13 @@
 <template>
-  <h2>Home</h2>
-  <div v-if="error">{{ error }}</div>
-  <div v-if="posts.length">
-    <PostsList :posts="posts" />
-  </div>
-  <div v-else>
-    <Spinner />
+  <div class="home">
+    <h2>Home</h2>
+    <div v-if="error">{{ error }}</div>
+    <div v-if="posts.length">
+      <PostsList :posts="posts" />
+    </div>
+    <div v-else>
+      <Spinner />
+    </div>
   </div>
 </template>
 
@@ -27,3 +29,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.home {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+</style>
