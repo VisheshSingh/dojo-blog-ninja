@@ -36,7 +36,8 @@ export default {
 </script>
 
 <style>
-.home {
+.home,
+.tag {
   max-width: 1200px;
   margin: 0 auto;
 }

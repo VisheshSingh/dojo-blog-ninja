@@ -1,14 +1,16 @@
 <template>
-  <h2>Tag component</h2>
-  <div v-if="error">{{ error }}</div>
-  <div v-if="posts.length" class="layout">
-    <div>
-      <PostsList :posts="postsWithTag" />
+  <div class="tag">
+    <h2>Tag component</h2>
+    <div v-if="error">{{ error }}</div>
+    <div v-if="posts.length" class="layout">
+      <div>
+        <PostsList :posts="postsWithTag" />
+      </div>
+      <TagCloud :posts="posts" />
     </div>
-    <TagCloud :posts="posts" />
-  </div>
-  <div v-else>
-    <Spinner />
+    <div v-else>
+      <Spinner />
+    </div>
   </div>
 </template>
 
