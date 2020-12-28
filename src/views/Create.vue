@@ -1,17 +1,12 @@
 <template>
   <h2>Create a blog post</h2>
-  <form>
+  <form @submit.prevent="handleSubmit">
     <label for="title">Title</label>
     <input type="text" v-model="title" required />
     <label for="content">Content</label>
     <textarea v-model="content" required />
     <label for="tag">Tags</label>
-    <input
-      type="text"
-      v-model="tag"
-      required
-      @keydown.enter.prevent="handleKeydown"
-    />
+    <input type="text" v-model="tag" @keydown.enter.prevent="handleKeydown" />
     <div v-for="tag in tags" :key="tag" class="pill">#{{ tag }}</div>
     <button type="submit">Create</button>
   </form>
@@ -35,7 +30,23 @@ export default {
       tag.value = '';
     };
 
-    return { title, content, tag, tags, handleKeydown };
+    const handleSubmit = async () => {
+      const post = {
+        title: title.value,
+        details: content.value,
+        tags: tags.value,
+      };
+
+      await fetch(`http://localhost:3000/posts`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(post),
+      });
+    };
+
+    return { title, content, tag, tags, handleKeydown, handleSubmit };
   },
 };
 </script>
